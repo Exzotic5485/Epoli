@@ -26,6 +26,12 @@ repositories {
 		url = 'https://jitpack.io'
 	}
 	maven {
+		url "https://maven.jamieswhiteshirt.com/libs-release"
+		content {
+			includeGroup "com.jamieswhiteshirt"
+		}
+	}
+	maven {
 		url = 'https://maven.cafeteria.dev'
 		content {
 			includeGroup 'net.adriantodt.fabricmc'
@@ -48,6 +54,15 @@ dependencies {
 	// Fabric API. This is technically optional, but you probably want it anyway.
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 	modImplementation "com.github.apace100:apoli:${project.apoli_version}"
+	include "com.github.apace100:apoli:${project.apoli_version}"
+
+	modImplementation "dev.onyxstudios.cardinal-components-api:cardinal-components-base:${project.cardinal_version}"
+	modImplementation "dev.onyxstudios.cardinal-components-api:cardinal-components-entity:${project.cardinal_version}"
+	include "dev.onyxstudios.cardinal-components-api:cardinal-components-base:${project.cardinal_version}"
+	include "dev.onyxstudios.cardinal-components-api:cardinal-components-entity:${project.cardinal_version}"
+
+	modImplementation "com.github.apace100:origins-fabric:${project.origins_version}"
+	include modImplementation("com.jamieswhiteshirt:reach-entity-attributes:${project.reach_version}")
 }
 
 processResources {
@@ -80,7 +95,12 @@ jar {
 publishing {
 	publications {
 		mavenJava(MavenPublication) {
-			from components.java
+			artifact(remapJar) {
+				builtBy remapJar
+			}
+			artifact(sourcesJar) {
+				builtBy remapSourcesJar
+			}
 		}
 	}
 

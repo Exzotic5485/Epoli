@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
-  "id": "modid",
+  "id": "epoli",
   "version": "${version}",
 
-  "name": "Example Mod",
-  "description": "This is an example description! Tell everyone what your mod is about!",
+  "name": "Epoli",
+  "description": "An addon for Apoli.",
   "authors": [
-    "Me!"
+    "Exzotic"
   ],
   "contact": {
     "homepage": "https://fabricmc.net/",
@@ -14,12 +14,15 @@
   },
 
   "license": "CC0-1.0",
-  "icon": "assets/epoli/icon.png",
+  "icon": "assets/epoli/epoli.png",
 
   "environment": "*",
   "entrypoints": {
     "main": [
       "net.exzotic.epoli.Epoli"
+    ],
+    "cardinal-components-entity": [
+      "net.exzotic.epoli.registry.ModComponent"
     ]
   },
   "mixins": [
@@ -30,9 +33,14 @@
     "fabricloader": ">=0.13.3",
     "fabric": "*",
     "minecraft": "1.18.2",
-    "java": ">=17"
+    "java": ">=17",
+    "apoli": ">=2.3.1"
   },
   "suggests": {
-    "another-mod": "*"
+  },
+  "custom": {
+    "cardinal-components": [
+      "epoli:savedtps"
+    ]
   }
 }

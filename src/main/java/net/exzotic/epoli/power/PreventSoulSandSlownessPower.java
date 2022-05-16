@@ -7,17 +7,16 @@ import io.github.apace100.calio.data.SerializableData;
 import net.exzotic.epoli.Epoli;
 import net.minecraft.entity.LivingEntity;
 
-public class RedstonePower extends Power {
-
-    public RedstonePower(PowerType<?> type, LivingEntity entity) {
+public class PreventSoulSandSlownessPower extends Power {
+    public PreventSoulSandSlownessPower(PowerType<?> type, LivingEntity entity) {
         super(type, entity);
     }
 
     public static PowerFactory getFactory() {
-        return new PowerFactory<>(Epoli.identifier("redstone"),
+        return new PowerFactory<>(Epoli.identifier("prevent_soulsand_slowness"),
                 new SerializableData(),
                 data ->
-                        (type, player) -> new RedstonePower(type, player))
+                        (type, player) -> new PreventSoulSandSlownessPower(type, player))
                 .allowCondition();
     }
 }
