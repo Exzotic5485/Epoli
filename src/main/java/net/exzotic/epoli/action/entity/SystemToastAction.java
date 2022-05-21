@@ -12,28 +12,24 @@ import net.minecraft.text.Text;
 
 import static net.minecraft.client.toast.SystemToast.Type.TUTORIAL_HINT;
 
-public class ShowToastAction {
+public class SystemToastAction {
 
     public static void action(SerializableData.Instance data, Entity entity) {
         if (entity == MinecraftClient.getInstance().player) {
             ToastManager manager = MinecraftClient.getInstance().getToastManager();
-            Text title = Text.of(data.getString("title"));
-            Text description = Text.of(data.getString("description"));
+            Text title = data.get("title");
+            Text description = data.get("description");
 
             SystemToast.show(manager, TUTORIAL_HINT, title, description);
-        }
-
-        if(entity.getWorld().isClient) {
-            return;
         }
     }
 
     public static ActionFactory<Entity> getFactory() {
-        return new ActionFactory<>(Epoli.identifier("alert"),
+        return new ActionFactory<>(Epoli.identifier("system_toast"),
                 new SerializableData()
-                .add("title", SerializableDataTypes.STRING, null)
-                .add("description", SerializableDataTypes.STRING, null),
-                ShowToastAction::action
+                .add("title", SerializableDataTypes.TEXT, null)
+                .add("description", SerializableDataTypes.TEXT, null),
+                SystemToastAction::action
         );
     }
 }

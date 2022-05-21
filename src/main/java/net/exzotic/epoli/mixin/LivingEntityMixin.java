@@ -10,6 +10,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.BowItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
@@ -52,6 +53,7 @@ public abstract class LivingEntityMixin {
     @Inject(method = "getVelocityMultiplier", at = @At("HEAD"), cancellable = true)
     private void getVelocityMultiplier(CallbackInfoReturnable<Float> cir){
         LivingEntity entity = (LivingEntity)(Object)this;
+
         for (PreventSoulSandSlownessPower power : PowerHolderComponent.getPowers(entity, PreventSoulSandSlownessPower.class)) {
             float value = 1;
             cir.setReturnValue(value);

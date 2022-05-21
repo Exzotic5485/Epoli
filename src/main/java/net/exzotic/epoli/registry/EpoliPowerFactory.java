@@ -13,6 +13,7 @@ public class EpoliPowerFactory {
         register(PassivePower.getFactory());
         register(ActionOnTriggerPower.getFactory());
         register(ActionOnDeath.getFactory());
+        register(MultiplyArrowSpeedPower.getFactory());
     }
 
     public static void register(PowerFactory<?> serializer) {

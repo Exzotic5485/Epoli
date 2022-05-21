@@ -13,7 +13,7 @@ public class EpoliEntityActions {
         register(KillAction.getFactory());
         register(SaveLocationAction.getFactory());
         register(TeleportLocationAction.getFactory());
-        register(ShowToastAction.getFactory());
+        register(SystemToastAction.getFactory());
     }
 
     private static void register(ActionFactory<Entity> actionFactory) {
