@@ -20,7 +20,7 @@ public class BowItemMixin {
     private static PlayerEntity storedEntity;
 
     @Inject(method = "getPullProgress", at = @At("TAIL"), cancellable = true)
-    private static void getPullPirogress(int useTicks, CallbackInfoReturnable<Float> cir){
+    private static void getPullProgress(int useTicks, CallbackInfoReturnable<Float> cir){
         for (MultiplyArrowSpeedPower power : PowerHolderComponent.getPowers(storedEntity, MultiplyArrowSpeedPower.class)) {
             float f = cir.getReturnValue();
             int multiplier = power.getMultiplier();

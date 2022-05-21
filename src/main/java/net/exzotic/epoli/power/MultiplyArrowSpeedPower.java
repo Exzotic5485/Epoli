@@ -23,7 +23,7 @@ public class MultiplyArrowSpeedPower extends Power {
     }
 
     public static PowerFactory getFactory() {
-        return new PowerFactory<>(Epoli.identifier("multiply_arrow_speed"),
+        return new PowerFactory<>(Epoli.identifier("multiply_bow_speed"),
                 new SerializableData()
                 .add("multiplier", SerializableDataTypes.INT, 1),
                 data ->
