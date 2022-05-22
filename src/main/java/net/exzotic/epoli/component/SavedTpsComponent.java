@@ -3,6 +3,7 @@ package net.exzotic.epoli.component;
 import net.fabricmc.fabric.api.util.NbtType;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtList;
+import net.minecraft.util.Identifier;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -14,6 +14,7 @@ public class EpoliPowerFactory {
         register(ActionOnTriggerPower.getFactory());
         register(ActionOnDeath.getFactory());
         register(MultiplyArrowSpeedPower.getFactory());
+        register(DamageLimitPower.getFactory());
     }
 
     public static void register(PowerFactory<?> serializer) {
