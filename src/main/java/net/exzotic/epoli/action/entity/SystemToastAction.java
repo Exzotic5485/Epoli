@@ -8,6 +8,7 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.toast.SystemToast;
 import net.minecraft.client.toast.ToastManager;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.text.Text;
 
 import static net.minecraft.client.toast.SystemToast.Type.TUTORIAL_HINT;
@@ -15,6 +16,10 @@ import static net.minecraft.client.toast.SystemToast.Type.TUTORIAL_HINT;
 public class SystemToastAction {
 
     public static void action(SerializableData.Instance data, Entity entity) {
+        if(!(entity instanceof PlayerEntity)){
+            return;
+        }
+
         if (entity == MinecraftClient.getInstance().player) {
             ToastManager manager = MinecraftClient.getInstance().getToastManager();
             Text title = data.get("title");

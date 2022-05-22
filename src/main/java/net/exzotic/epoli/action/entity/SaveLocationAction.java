@@ -7,7 +7,6 @@ import net.exzotic.epoli.Epoli;
 import net.exzotic.epoli.component.LocationComponent;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
 
 import java.util.Optional;
 
