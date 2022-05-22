@@ -6,6 +6,7 @@ import dev.onyxstudios.cca.api.v3.entity.EntityComponentFactoryRegistry;
 import dev.onyxstudios.cca.api.v3.entity.EntityComponentInitializer;
 import dev.onyxstudios.cca.api.v3.entity.RespawnCopyStrategy;
 import net.exzotic.epoli.component.SavedTpsComponent;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.Identifier;
 
 
@@ -17,5 +18,7 @@ public class ModComponent implements EntityComponentInitializer {
     @Override
     public void registerEntityComponentFactories(EntityComponentFactoryRegistry registry) {
         registry.registerForPlayers(SAVEDTPS, player -> new SavedTpsComponent(), RespawnCopyStrategy.ALWAYS_COPY);
+
+        registry.registerFor(LivingEntity.class, SAVEDTPS, livingEntity -> new SavedTpsComponent());
     }
 }

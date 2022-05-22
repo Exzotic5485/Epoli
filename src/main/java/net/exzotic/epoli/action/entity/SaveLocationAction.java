@@ -6,7 +6,7 @@ import io.github.apace100.calio.data.SerializableDataTypes;
 import net.exzotic.epoli.Epoli;
 import net.exzotic.epoli.component.LocationComponent;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.LivingEntity;
 
 import java.util.Optional;
 
@@ -19,22 +19,26 @@ public class SaveLocationAction {
             return;
         }
 
-        PlayerEntity player = (PlayerEntity) entity;
+        if(!(entity instanceof LivingEntity)){
+            return;
+        }
+
+        LivingEntity livingEntity = (LivingEntity)entity;
 
         String saveid = data.getString("saveid");
 
-        Optional<LocationComponent> checkloc = SAVEDTPS.get(player).getLocations().stream().filter(v -> v.getSaveId().equals(saveid)).findFirst();
+        Optional<LocationComponent> checkloc = SAVEDTPS.get(livingEntity).getLocations().stream().filter(v -> v.getSaveId().equals(saveid)).findFirst();
         boolean overwrite = data.getBoolean("overwrite");
 
         if(!checkloc.isEmpty()){
             removeLocation(saveid);
         }
 
-        SAVEDTPS.get(player).saveLocation(new LocationComponent(
-                player.getPos(),
-                player.getPitch(),
-                player.getYaw(),
-                player.getWorld().getRegistryKey().getValue(),
+        SAVEDTPS.get(livingEntity).saveLocation(new LocationComponent(
+                entity.getPos(),
+                entity.getPitch(),
+                entity.getYaw(),
+                entity.getWorld().getRegistryKey().getValue(),
                 saveid));
 
     }

@@ -2,6 +2,7 @@ package net.exzotic.epoli;
 
 import net.exzotic.epoli.registry.EpoliPowerFactory;
 import net.exzotic.epoli.registry.action.EpoliEntityActions;
+import net.exzotic.epoli.registry.action.EpoliItemActions;
 import net.fabricmc.api.ModInitializer;
 
 import net.minecraft.block.Block;
@@ -29,6 +30,7 @@ public class Epoli implements ModInitializer {
         LOGGER.info("Epoli!");
         EpoliEntityActions.register();
         EpoliPowerFactory.register();
+        EpoliItemActions.register();
     }
 
     public static Identifier identifier(String path) {

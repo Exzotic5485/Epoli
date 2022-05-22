@@ -6,6 +6,7 @@ import io.github.apace100.calio.data.SerializableDataTypes;
 import net.exzotic.epoli.Epoli;
 import net.exzotic.epoli.component.LocationComponent;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
@@ -22,18 +23,18 @@ public class TeleportLocationAction {
             return;
         }
 
-        PlayerEntity player = (PlayerEntity) entity;
+        LivingEntity livingEntity = (LivingEntity)entity;
 
         String saveid = data.getString("saveid");
 
-        Optional<LocationComponent> location = SAVEDTPS.get(player).getLocations().stream().filter(v -> v.getSaveId().equals(saveid)).findFirst();
+        Optional<LocationComponent> location = SAVEDTPS.get(livingEntity).getLocations().stream().filter(v -> v.getSaveId().equals(saveid)).findFirst();
 
         if(location.isEmpty()){
             Epoli.LOGGER.warn("DID NOT TELEPORT");
             return;
         }
 
-        ServerWorld tpworld = player.getServer().getWorld(RegistryKey.of(Registry.WORLD_KEY, location.get().getDimID()));
+        ServerWorld tpworld = livingEntity.getServer().getWorld(RegistryKey.of(Registry.WORLD_KEY, location.get().getDimID()));
         double x = location.get().getX();
         double y = location.get().getY();
         double z = location.get().getZ();
@@ -41,7 +42,13 @@ public class TeleportLocationAction {
         float yaw = location.get().getYaw();
         float pitch = location.get().getPitch();
 
-        ((ServerPlayerEntity)entity).teleport(tpworld, x, y, z, yaw, pitch);
+        if(livingEntity instanceof PlayerEntity){
+            ((ServerPlayerEntity)entity).teleport(tpworld, x, y, z, yaw, pitch);
+            return;
+        } else {
+            livingEntity.moveToWorld(tpworld);
+            livingEntity.teleport(x, y, z);
+        }
     }
 
     public static ActionFactory<Entity> getFactory() {
