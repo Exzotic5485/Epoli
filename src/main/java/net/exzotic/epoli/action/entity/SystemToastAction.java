@@ -16,7 +16,7 @@ import static net.minecraft.client.toast.SystemToast.Type.TUTORIAL_HINT;
 public class SystemToastAction {
 
     public static void action(SerializableData.Instance data, Entity entity) {
-        if(!(entity instanceof PlayerEntity)){
+        if(!(entity instanceof PlayerEntity)) {
             return;
         }
 
