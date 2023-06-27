@@ -6,10 +6,10 @@ import io.github.apace100.calio.data.SerializableDataTypes;
 import net.exzotic.epoli.Epoli;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.RegistryKeys;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.util.registry.RegistryKey;
 
 public class TeleportAction {
     public static void action(SerializableData.Instance data, Entity entity) {
@@ -18,7 +18,7 @@ public class TeleportAction {
         double y = data.getDouble("y");
         double z = data.getDouble("z");
 
-        ServerWorld tpworld = entity.getServer().getWorld(RegistryKey.of(Registry.WORLD_KEY, data.get("dimension")));
+        ServerWorld tpworld = entity.getServer().getWorld(RegistryKey.of(RegistryKeys.WORLD, data.get("dimension")));
 
         ((ServerPlayerEntity)entity).teleport(tpworld, x, y, z, 0, 0);
     }

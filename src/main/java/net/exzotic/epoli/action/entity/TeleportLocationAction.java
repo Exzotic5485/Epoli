@@ -8,10 +8,10 @@ import net.exzotic.epoli.component.LocationComponent;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.RegistryKeys;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.util.registry.RegistryKey;
 
 import java.util.Optional;
 
@@ -34,7 +34,7 @@ public class TeleportLocationAction {
             return;
         }
 
-        ServerWorld tpworld = livingEntity.getServer().getWorld(RegistryKey.of(Registry.WORLD_KEY, location.get().getDimID()));
+        ServerWorld tpworld = livingEntity.getServer().getWorld(RegistryKey.of(RegistryKeys.WORLD, location.get().getDimID()));
         double x = location.get().getX();
         double y = location.get().getY();
         double z = location.get().getZ();

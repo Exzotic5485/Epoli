@@ -3,7 +3,7 @@ package net.exzotic.epoli.registry;
 import io.github.apace100.apoli.power.factory.PowerFactory;
 import io.github.apace100.apoli.registry.ApoliRegistries;
 import net.exzotic.epoli.power.*;
-import net.minecraft.util.registry.Registry;
+import net.minecraft.registry.Registry;
 
 public class EpoliPowerFactory {
 
